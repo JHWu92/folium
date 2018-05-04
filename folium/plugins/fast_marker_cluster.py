@@ -64,11 +64,11 @@ class FastMarkerCluster(MarkerCluster):
             {% macro script(this, kwargs) %}
             {{this._callback}}
 
-            var data = {{this._data}};
+            var {{this.get_name()}}_data = {{this._data}};
             var {{this.get_name()}} = L.markerClusterGroup();
 
             for (var i = 0; i < data.length; i++) {
-                var row = data[i];
+                var row = {{this.get_name()}}_data[i];
                 var marker = callback(row);
                 marker.addTo({{this.get_name()}});
             }
